@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "start": "npx redocly preview-docs ./v0/index.yaml"
+  },
+  "devDependencies": {
+    "@redocly/cli": "^1.27.2"
+  }
+}

@@ -1,0 +1,320 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/qbki/planeds/v0/entities.json",
+  "title": "The Entities Schema",
+  "description": "The entities schema describes a list of enemies, models, weapons and other items used in a game.",
+  "type": "object",
+  "properties": {
+    "entities": {
+      "type": "object",
+      "description": "List of all entities that could be used in the engine",
+      "patternProperties": {
+        "^.*$": {
+          "oneOf": [
+            { "$ref": "#/$defs/actor-kind" },
+            { "$ref": "#/$defs/directional-light-kind" },
+            { "$ref": "#/$defs/model-kind" },
+            { "$ref": "#/$defs/particles-kind" },
+            { "$ref": "#/$defs/point-light-kind" },
+            { "$ref": "#/$defs/text-kind" },
+            { "$ref": "#/$defs/weapon-kind" }
+          ]
+        }
+      }
+    }
+  },
+
+  "$defs": {
+    "model-kind": {
+      "type": "object",
+      "description": "A 3D model that could be used for static objects, enemies, projectiles, etc.",
+      "properties": {
+        "kind": {
+          "const": "model",
+          "$ref": "#/$defs/kind"
+        },
+        "name": {
+          "$ref": "#/$defs/name"
+        },
+        "is_opaque": {
+          "type": "boolean",
+          "description": "True - the model is opaque, False - the model is transparent"
+        },
+        "path": {
+          "type": "string",
+          "format": "file-path",
+          "description": "Path to *\\*.glb* file in the assets directory"
+        }
+      }
+    },
+
+    "particles-kind": {
+      "type": "object",
+      "description": "A configuration of a particle emmiter",
+      "properties": {
+        "kind": {
+          "const": "particles",
+          "$ref": "#/$defs/kind"
+        },
+        "name": {
+          "$ref": "#/$defs/name"
+        },
+        "lifetime": {
+          "type": "number",
+          "minimum": 1,
+          "description": "The lifetime of a particle"
+        },
+        "model_id": {
+          "$ref": "#/$defs/model-id"
+        },
+        "quantity": {
+          "type": "number",
+          "minimum": 1,
+          "description": "Quantity of particles"
+        },
+        "speed": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Speed of particles in units per second"
+        }
+      }
+    },
+
+    "directional-light-kind": {
+      "type": "object",
+      "description": "A directional light (for instance, the sun)",
+      "properties": {
+        "kind": {
+          "const": "directional_light",
+          "$ref": "#/$defs/kind"
+        },
+        "name": {
+          "$ref": "#/$defs/name"
+        },
+        "color": {
+          "$ref": "#/$defs/color"
+        },
+        "direction": {
+          "$ref": "#/$defs/vector3d"
+        }
+      }
+    },
+
+    "point-light-kind": {
+      "type": "object",
+      "description": "A point light",
+      "properties": {
+        "kind": {
+          "const": "point_light",
+          "$ref": "#/$defs/kind"
+        },
+        "name": {
+          "$ref": "#/$defs/name"
+        },
+        "color": {
+          "$ref": "#/$defs/color"
+        }
+      }
+    },
+
+    "actor-kind": {
+      "type": "object",
+      "description": "AI or a player controlled entity",
+      "properties": {
+        "kind": {
+          "const": "actor",
+          "$ref": "#/$defs/kind"
+        },
+        "name": {
+          "$ref": "#/$defs/name"
+        },
+        "lives": {
+          "type": "number",
+          "description": "Lives of the actor entity, after reaching 0 the entity is considered destroyed or dead"
+        },
+        "rotation_speed": {
+          "type": "number",
+          "description": "Rotation speed of the actor around Z axis in radians per second (used for AI only)"
+        },
+        "debris_id": {
+          "$ref": "#/$defs/model-id",
+          "description": "The actor will be replaced by a model with this ID after the lives property reachs zero"
+        },
+        "hit_particles_id": {
+          "$ref": "#/$defs/particles-id",
+          "description": "When a projectile hit the actor there will be fired a particle emitter with this ID"
+        },
+        "model_id": {
+          "$ref": "#/$defs/model-id"
+        },
+        "weapon_id": {
+          "$ref": "#/$defs/weapon-id"
+        },
+        "speed": {
+          "$ref": "#/$defs/velocity"
+        }
+      }
+    },
+
+    "text-kind": {
+      "properties": {
+        "kind": {
+          "const": "text",
+          "$ref": "#/$defs/kind"
+        },
+        "name": {
+          "$ref": "#/$defs/name"
+        },
+        "color": {
+          "$ref": "#/$defs/color"
+        },
+        "with": {
+          "type": "number",
+          "description": "Width of the text in units",
+          "minimum": 0
+        },
+        "height": {
+          "type": "number",
+          "description": "Height of the text in units",
+          "minimum": 0
+        },
+        "size": {
+          "type": "number",
+          "description": "Font size in points (in terms of SDL_ttf)",
+          "minimum": 1
+        },
+        "text_id": {
+          "$ref": "#/$defs/text-id"
+        }
+      }
+    },
+
+    "weapon-kind": {
+      "properties": {
+        "kind": {
+          "const": "weapon",
+          "$ref": "#/$defs/kind"
+        },
+        "name": {
+          "$ref": "#/$defs/name"
+        },
+        "bullet_model_id": {
+          "$ref": "#/$defs/model-id"
+        },
+        "bullet_speed": {
+          "type": "number",
+          "description": "A projectile speed in units per second"
+        },
+        "fire_rate": {
+          "type": "number",
+          "description": "Fire rate in projectiles per second"
+        },
+        "lifetime": {
+          "type": "number",
+          "description": "Lifetime of a projectile in seconds"
+        },
+        "shot_sound_path": {
+          "type": "string",
+          "format": "file-path",
+          "description": "Path to *\\*.wav* file in the assets directory"
+        }
+      }
+    },
+
+    "color": {
+      "type": "array",
+      "description": "A color",
+      "prefixItems": [
+        {
+          "type": "number",
+          "description": "Red",
+          "minimum": 0,
+          "maximum": 1
+        },
+        {
+          "type": "number",
+          "description": "Green",
+          "minimum": 0,
+          "maximum": 1
+        },
+        {
+          "type": "number",
+          "description": "Blue",
+          "minimum": 0,
+          "maximum": 1
+        }
+      ]
+    },
+
+    "vector3d": {
+      "type": "array",
+      "description": "A 3D vector",
+      "prefixItems": [
+        {
+          "type": "number",
+          "description": "X"
+        },
+        {
+          "type": "number",
+          "description": "Y"
+        },
+        {
+          "type": "number",
+          "description": "Z"
+        }
+      ]
+    },
+
+    "kind": {
+      "type": "string",
+      "description": "Type of this entity"
+    },
+
+    "name": {
+      "type": "string",
+      "description": "Name of the entity, it is usually used in tooling (a level editor) rather inside the game"
+    },
+
+    "velocity": {
+      "type": "object",
+      "description": "A velocity configuration",
+      "properties": {
+        "acceleration": {
+          "type": "number",
+          "description": "Acceleration of the entity in units per second",
+          "minimum": 0
+        },
+        "damping": {
+          "type": "number",
+          "description": "Decay rate per second (for instance, velocity will be halved in 1 second if you set this property to 0.5)",
+          "minimum": 0
+        },
+        "speed": {
+          "type": "number",
+          "description": "Constant speed in units per second, there is no reasons to use this property with acceleration and damping",
+          "minimum": 0
+        }
+      }
+    },
+
+    "model-id": {
+      "type": "string",
+      "description": "ID of a model entity"
+    },
+
+    "weapon-id": {
+      "type": "string",
+      "description": "ID of a weapon entity"
+    },
+
+    "particles-id": {
+      "type": "string",
+      "description": "ID of a particles entity"
+    },
+
+    "text-id": {
+      "type": "string",
+      "description": "ID of a text entity"
+    }
+  }
+}
