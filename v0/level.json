@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/qbki/planeds/refs/heads/main/v0/level.json",
+  "title": "The Level Schema",
+  "description": "The level schema describes entities' positions in a game and meta information of a level",
+  "type": "object",
+  "properties": {
+    "map": {
+      "type": "array",
+      "description": "Placing of entities",
+      "items": {
+        "oneOf": [
+          { "$ref": "#/$defs/many-strategy-kind" }
+        ]
+      }
+    },
+    "meta": {
+      "type": "object",
+      "description": "The level configuration",
+      "properties": {
+        "camera": {
+          "$ref": "#/$defs/camera"
+        },
+        "boundaries": {
+          "$ref": "#/$defs/boundaries"
+        },
+        "layers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/layer"
+          }
+        }
+      }
+    }
+  },
+
+  "$defs": {
+    "many-strategy-kind": {
+      "properties": {
+        "behaviour": {
+          "enum": ["player", "enemy", "static"]
+        },
+        "entity_id": {
+          "type": "string",
+          "description": "An entity id"
+        },
+        "kind": {
+          "type": "string",
+          "const": "many",
+          "description": "Type of this strategy"
+        },
+        "layer_id": {
+          "$ref": "#/$defs/layer/properties/id"
+        },
+        "positions": {
+          "type": "array",
+          "description": "Triplets of numbers that represent 3D coordinates",
+          "items": {
+            "type": "number"
+          }
+        }
+      }
+    },
+
+    "layer": {
+      "type": "object",
+      "description": "A layer",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Layer ID"
+        },
+        "is_visible": {
+          "type": "boolean",
+          "description": "Visibility of the layer (should be used in a level editor)"
+        },
+        "name": {
+          "type": "boolean",
+          "description": "Name of the layer"
+        }
+      }
+    },
+
+    "camera": {
+      "type": "object",
+      "description": "A camera configuration",
+      "properties": {
+        "position": {
+          "$ref": "common.json#/$defs/vector3d"
+        }
+      }
+    },
+
+    "boundaries": {
+      "type": "object",
+      "description": "Level boundaries, a player can't leave this box",
+      "properties": {
+        "max": {
+          "$ref": "common.json#/$defs/vector3d",
+          "description": "Minimum boundary, can't be less than the minimum boundary"
+        },
+        "min": {
+          "$ref": "common.json#/$defs/vector3d",
+          "description": "Maximum boundary, can't be more than the maximum boundary"
+        }
+      }
+    }
+  }
+}

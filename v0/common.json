@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Common types",
+  "description": "Common types",
+
+  "$defs": {
+    "vector3d": {
+      "type": "array",
+      "description": "A 3D vector",
+      "prefixItems": [
+        {
+          "type": "number",
+          "description": "X"
+        },
+        {
+          "type": "number",
+          "description": "Y"
+        },
+        {
+          "type": "number",
+          "description": "Z"
+        }
+      ]
+    },
+
+    "color": {
+      "type": "array",
+      "description": "A color",
+      "prefixItems": [
+        {
+          "type": "number",
+          "description": "Red",
+          "minimum": 0,
+          "maximum": 1
+        },
+        {
+          "type": "number",
+          "description": "Green",
+          "minimum": 0,
+          "maximum": 1
+        },
+        {
+          "type": "number",
+          "description": "Blue",
+          "minimum": 0,
+          "maximum": 1
+        }
+      ]
+    }
+  }
+}

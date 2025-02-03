@@ -38,12 +38,12 @@
         },
         "is_opaque": {
           "type": "boolean",
-          "description": "True - the model is opaque, False - the model is transparent"
+          "description": "*true* - the model is opaque, *false* - the model is transparent"
         },
         "path": {
           "type": "string",
           "format": "file-path",
-          "description": "Path to *\\*.glb* file in the assets directory"
+          "description": "Path to *\\*.glb* file in an assets directory"
         }
       }
     },
@@ -92,10 +92,10 @@
           "$ref": "#/$defs/name"
         },
         "color": {
-          "$ref": "#/$defs/color"
+          "$ref": "common.json#/$defs/color"
         },
         "direction": {
-          "$ref": "#/$defs/vector3d"
+          "$ref": "common.json#/$defs/vector3d"
         }
       }
     },
@@ -112,7 +112,7 @@
           "$ref": "#/$defs/name"
         },
         "color": {
-          "$ref": "#/$defs/color"
+          "$ref": "common.json#/$defs/color"
         }
       }
     },
@@ -166,7 +166,7 @@
           "$ref": "#/$defs/name"
         },
         "color": {
-          "$ref": "#/$defs/color"
+          "$ref": "common.json#/$defs/color"
         },
         "with": {
           "type": "number",
@@ -219,50 +219,6 @@
           "description": "Path to *\\*.wav* file in the assets directory"
         }
       }
-    },
-
-    "color": {
-      "type": "array",
-      "description": "A color",
-      "prefixItems": [
-        {
-          "type": "number",
-          "description": "Red",
-          "minimum": 0,
-          "maximum": 1
-        },
-        {
-          "type": "number",
-          "description": "Green",
-          "minimum": 0,
-          "maximum": 1
-        },
-        {
-          "type": "number",
-          "description": "Blue",
-          "minimum": 0,
-          "maximum": 1
-        }
-      ]
-    },
-
-    "vector3d": {
-      "type": "array",
-      "description": "A 3D vector",
-      "prefixItems": [
-        {
-          "type": "number",
-          "description": "X"
-        },
-        {
-          "type": "number",
-          "description": "Y"
-        },
-        {
-          "type": "number",
-          "description": "Z"
-        }
-      ]
     },
 
     "kind": {
