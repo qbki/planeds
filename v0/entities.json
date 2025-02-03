@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/qbki/planeds/v0/entities.json",
+  "$id": "https://github.com/qbki/planeds/refs/heads/main/v0/entities.json",
   "title": "The Entities Schema",
   "description": "The entities schema describes a list of enemies, models, weapons and other items used in a game.",
   "type": "object",
