@@ -41,8 +41,7 @@
           "description": "*true* - the model is opaque, *false* - the model is transparent"
         },
         "path": {
-          "type": "string",
-          "format": "file-path",
+          "$ref": "common.json#/$defs/path",
           "description": "Path to *\\*.glb* file in an assets directory"
         }
       }
@@ -214,8 +213,7 @@
           "description": "Lifetime of a projectile in seconds"
         },
         "shot_sound_path": {
-          "type": "string",
-          "format": "file-path",
+          "$ref": "common.json#/$defs/path",
           "description": "Path to *\\*.wav* file in the assets directory"
         }
       }

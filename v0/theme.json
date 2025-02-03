@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/qbki/planeds/refs/heads/main/v0/theme.json",
+  "title": "The Theme Schema",
+  "description": "The theme schema contains fonts, colors and other UI settings",
+  "type": "object",
+  "properties": {
+    "font": {
+      "$ref": "common.json#/$defs/path",
+      "description": "Path to a *\\*.ttf* file in a file system"
+    }
+  }
+}

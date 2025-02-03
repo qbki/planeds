@@ -46,6 +46,12 @@
           "maximum": 1
         }
       ]
+    },
+
+    "path": {
+      "type": "string",
+      "format": "file-path",
+      "description": " A file path specifies the location of a file in a file system"
     }
   }
 }
