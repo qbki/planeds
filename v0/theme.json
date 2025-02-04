@@ -9,5 +9,6 @@
       "$ref": "common.json#/$defs/path",
       "description": "Path to a *\\*.ttf* file in a file system"
     }
-  }
+  },
+  "required": ["font"]
 }

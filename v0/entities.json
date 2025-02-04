@@ -44,7 +44,8 @@
           "$ref": "common.json#/$defs/path",
           "description": "Path to *\\*.glb* file in an assets directory"
         }
-      }
+      },
+      "required": ["kind", "name", "is_opaque", "path"]
     },
 
     "particles-kind": {
@@ -76,7 +77,8 @@
           "minimum": 0,
           "description": "Speed of particles in units per second"
         }
-      }
+      },
+      "required": ["kind", "name", "lifetime", "model_id", "quantity", "speed"]
     },
 
     "directional-light-kind": {
@@ -94,9 +96,11 @@
           "$ref": "common.json#/$defs/color"
         },
         "direction": {
-          "$ref": "common.json#/$defs/vector3d"
+          "$ref": "common.json#/$defs/vector3d",
+          "description": "The direction vector of the sun, it will be normalized in a game. It can't have a zero magnitute."
         }
-      }
+      },
+      "required": ["kind", "name", "color", "direction"]
     },
 
     "point-light-kind": {
@@ -113,7 +117,8 @@
         "color": {
           "$ref": "common.json#/$defs/color"
         }
-      }
+      },
+      "required": ["kind", "name", "color"]
     },
 
     "actor-kind": {
@@ -152,7 +157,8 @@
         "speed": {
           "$ref": "#/$defs/velocity"
         }
-      }
+      },
+      "required": ["kind", "name", "lives", "model_id"]
     },
 
     "text-kind": {
@@ -185,7 +191,8 @@
         "text_id": {
           "$ref": "#/$defs/text-id"
         }
-      }
+      },
+      "required": ["kind", "name", "color", "size", "text_id"]
     },
 
     "weapon-kind": {
@@ -202,21 +209,25 @@
         },
         "bullet_speed": {
           "type": "number",
-          "description": "A projectile speed in units per second"
+          "description": "A projectile speed in units per second",
+          "exclusiveMinimum": 0
         },
         "fire_rate": {
           "type": "number",
-          "description": "Fire rate in projectiles per second"
+          "description": "Fire rate in projectiles per second",
+          "exclusiveMinimum": 0
         },
         "lifetime": {
           "type": "number",
-          "description": "Lifetime of a projectile in seconds"
+          "description": "Lifetime of a projectile in seconds",
+          "exclusiveMinimum": 0
         },
         "shot_sound_path": {
           "$ref": "common.json#/$defs/path",
           "description": "Path to *\\*.wav* file in the assets directory"
         }
-      }
+      },
+      "required": ["kind", "name", "bullet_model_id", "bullet_speed", "fire_rate", "lifetime"]
     },
 
     "kind": {
@@ -268,7 +279,7 @@
 
     "text-id": {
       "type": "string",
-      "description": "ID of a text entity"
+      "description": "ID of a text from a translation file (*assets/text/{lang}.json*)"
     }
   }
 }

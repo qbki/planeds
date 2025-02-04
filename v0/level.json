@@ -30,9 +30,11 @@
             "$ref": "#/$defs/layer"
           }
         }
-      }
+      },
+      "required": ["camera", "boundaries", "layers"]
     }
   },
+  "required": ["map", "meta"],
 
   "$defs": {
     "many-strategy-kind": {
@@ -59,7 +61,8 @@
             "type": "number"
           }
         }
-      }
+      },
+      "required": ["behaviour", "entity_id", "kind", "layer_id", "positions"]
     },
 
     "layer": {
@@ -78,7 +81,8 @@
           "type": "boolean",
           "description": "Name of the layer"
         }
-      }
+      },
+      "required": ["id", "is_visible", "name"]
     },
 
     "camera": {
@@ -88,7 +92,8 @@
         "position": {
           "$ref": "common.json#/$defs/vector3d"
         }
-      }
+      },
+      "required": ["position"]
     },
 
     "boundaries": {
@@ -103,7 +108,8 @@
           "$ref": "common.json#/$defs/vector3d",
           "description": "Maximum boundary, can't be more than the maximum boundary"
         }
-      }
+      },
+      "required": ["min", "max"]
     }
   }
 }
