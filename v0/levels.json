@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/qbki/planeds/refs/heads/main/v0/levels.json",
+  "title": "Levels Order",
+  "description": "The levels order schema",
+  "type": "object",
+  "properties": {
+    "levels": {
+      "type": "array",
+      "description": "Pathes to *\\*.level.json* files in a file system",
+      "items": {
+        "$ref": "common.json#/$defs/path"
+      }
+    }
+  }
+}

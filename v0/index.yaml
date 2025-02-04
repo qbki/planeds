@@ -36,6 +36,17 @@ paths:
               schema:
                 $ref: ./level.json
 
+  /assets/levels/levels.json:
+    get:
+      summary: Levels order
+      responses:
+        200:
+          description: Levels order
+          content:
+            application/json:
+              schema:
+                $ref: ./levels.json
+
   /assets/levels/theme.json:
     get:
       summary: Theme
