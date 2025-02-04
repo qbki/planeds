@@ -94,6 +94,36 @@
           }
         }
       }
+    },
+
+    "/assets/text/${language}.json": {
+      "get": {
+        "summary": "Translations",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "language",
+            "schema": {
+              "type": "string",
+              "pattern": "^[a-z]{2,3}(-[A-Z]{2})*$"
+            },
+            "required": true,
+            "description": "An IETF BCP 47 language tag with an optional ISO 3166-1 sub tag (en, en-US, etc.)"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Translations",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./text.json"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/qbki/planeds/refs/heads/main/v0/text.json",
+  "title": "Translations",
+  "type": "object",
+  "description": "List of translation constants",
+  "patternProperties": {
+    "^.*$": {
+      "type": "string",
+      "description": "An internationalized constant string"
+    }
+  }
+}
