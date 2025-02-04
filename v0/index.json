@@ -1,0 +1,99 @@
+{
+  "openapi": "3.1.0",
+
+  "info": {
+    "title": "Plane Game Engine Data Structures",
+    "description": "Data structures for entities, levels and theme used in Plane Game Engine",
+    "license": {
+      "name": "MIT License",
+      "url": "https://raw.githubusercontent.com/qbki/planeds/refs/heads/main/LICENSE"
+    },
+    "version": "0.1.0"
+  },
+
+  "paths": {
+    "/assets/levels/entities.json": {
+      "get": {
+        "summary": "Game Entities",
+        "responses": {
+          "200": {
+            "description": "Game Entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./entities.json"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/assets/levels/${levelName}.level.json": {
+      "get": {
+        "summary": "Levels",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "levelName",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Level name"
+          }
+        ],
+
+        "responses": {
+          "200": {
+            "description": "Level strategies",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./level.json"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/assets/levels/levels.json": {
+      "get": {
+        "summary": "Levels order",
+        "responses": {
+          "200": {
+            "description": "Levels order",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./levels.json"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/assets/levels/theme.json": {
+      "get": {
+        "summary": "Theme",
+        "responses": {
+          "200": {
+            "description": "The game theme",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./theme.json"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
