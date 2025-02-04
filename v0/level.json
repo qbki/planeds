@@ -10,7 +10,8 @@
       "description": "Placing of entities",
       "items": {
         "oneOf": [
-          { "$ref": "#/$defs/many-strategy-kind" }
+          { "$ref": "#/$defs/many-strategy-kind" },
+          { "$ref": "#/$defs/void-strategy-kind" }
         ]
       }
     },
@@ -47,9 +48,8 @@
           "description": "An entity id"
         },
         "kind": {
-          "type": "string",
-          "const": "many",
-          "description": "Type of this strategy"
+          "$ref": "#/$defs/kind",
+          "const": "many"
         },
         "layer_id": {
           "$ref": "#/$defs/layer/properties/id"
@@ -63,6 +63,23 @@
         }
       },
       "required": ["behaviour", "entity_id", "kind", "layer_id", "positions"]
+    },
+
+    "void-strategy-kind": {
+      "properties": {
+        "behaviour": {
+          "enum": ["static"]
+        },
+        "entity_id": {
+          "type": "string",
+          "description": "An entity id"
+        },
+        "kind": {
+          "$ref": "#/$defs/kind",
+          "const": "void"
+        }
+      },
+      "required": ["behaviour", "entity_id", "kind"]
     },
 
     "layer": {
@@ -83,6 +100,11 @@
         }
       },
       "required": ["id", "is_visible", "name"]
+    },
+
+    "kind": {
+      "type": "string",
+      "description": "The strategy type"
     },
 
     "camera": {
