@@ -1,6 +1,7 @@
 {
   "scripts": {
     "start": "npx redocly preview-docs ./v0/index.json",
+    "build": "npx redocly build-docs ./v0/index.json --output=dist/index.html",
     "lint": "npx redocly lint v0/index.json --extends recommended"
   },
   "devDependencies": {
